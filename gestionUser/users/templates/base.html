@@ -1,0 +1,53 @@
+<!-- templates/base.html -->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Gestión de Usuarios{% endblock %}</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{% url 'home' %}">Inicio</a>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav ms-auto">
+        {% if user.is_authenticated %}
+          {% if can_view_ventas %}
+          <li class="nav-item">
+            <a class="nav-link" href="#">Ventas</a>
+          </li>
+          {% endif %}
+          {% if can_view_compras %}
+          <li class="nav-item">
+            <a class="nav-link" href="#">Compras</a>
+          </li>
+          {% endif %}
+          {% if can_view_inventarios %}
+          <li class="nav-item">
+            <a class="nav-link" href="#">Inventarios</a>
+          </li>
+          {% endif %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">Cerrar Sesión</a>
+          </li>
+        {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}">Iniciar Sesión</a>
+          </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container mt-4">
+    {% block content %}
+    {% endblock %}
+</div>
+
+</body>
+</html>
