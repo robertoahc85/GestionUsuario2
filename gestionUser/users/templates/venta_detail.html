@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2>{{ venta.nombre_producto }}</h2>
+    <p>{{ venta.descripcion }}</p>
+    <p>Precio: ${{ venta.precio }}</p>
+    <img src="{{ venta.imagen.url }}" alt="{{ venta.nombre_producto }}" style="max-width: 300px;">
+</div>
+{% endblock %}

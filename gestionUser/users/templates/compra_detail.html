@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2>{{ compra.nombre_producto }}</h2>
+    <p>Cantidad: {{ compra.cantidad }}</p>
+    <p>Precio Unitario: ${{ compra.precio_unitario }}</p>
+    <img src="{{ compra.imagen.url }}" alt="{{ compra.nombre_producto }}" style="max-width: 300px;">
+</div>
+{% endblock %}

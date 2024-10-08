@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2>Listado de Compras</h2>
+
+    {% if compras %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Precio Unitario</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for compra in compras %}
+                <tr>
+                    <td>{{ compra.nombre_producto }}</td>
+                    <td>{{ compra.cantidad }}</td>
+                    <td>${{ compra.precio_unitario }}</td>
+                    <td>${{ compra.cantidad|multiply:compra.precio_unitario }}</td> <!-- Multiplicación para obtener el total -->
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No hay compras disponibles en este momento.</p>
+    {% endif %}
+</div>
+{% endblock %}

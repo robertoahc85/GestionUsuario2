@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2>Listado de Ventas</h2>
+    
+    {% if ventas %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Precio</th>
+                    <th>Vista previa</th>
+                    <th>Detalles</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for venta in ventas %}
+                <tr>
+                    <td>{{ venta.nombre_producto }}</td>
+                    <td>${{ venta.precio }}</td>
+                    <td>
+                        {% if venta.imagen %}
+                            <img src="{{ venta.imagen.url }}" alt="{{ venta.nombre_producto }}" style="max-width: 50px;">
+                        {% else %}
+                            No Image
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{% url 'venta_detail' venta.id %}" class="btn btn-info btn-sm">Ver Detalles</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No hay ventas disponibles en este momento.</p>
+    {% endif %}
+</div>
+{% endblock %}
